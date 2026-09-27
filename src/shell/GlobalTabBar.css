@@ -1,0 +1,60 @@
+/* 하단 전체 탭바: 위쪽 모서리 24, 불투명 overlay 면 */
+.global-tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  width: 100%;
+  max-width: 800px;
+  height: var(--tabbar-height);
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  padding: 6px 0 env(safe-area-inset-bottom);
+  background: var(--surface-overlay);
+  border: 1px solid var(--inner-border);
+  border-bottom: none;
+  border-radius: var(--radius-tabbar) var(--radius-tabbar) 0 0;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.global-tab {
+  position: relative;
+  flex: 1;
+  max-width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .global-tab:hover:not(.active) {
+    color: var(--ink);
+  }
+}
+
+/* 각 항목에 탭 클래스가 붙어 있어서 --accent 가 그 탭의 색 */
+.global-tab.active {
+  color: var(--accent-strong);
+  font-weight: 700;
+}
+
+.global-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 28px;
+  height: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  transform: translateX(-50%);
+}

@@ -1,0 +1,237 @@
+/*
+ * MOCHESTRA 공통 디자인 토큰
+ * - 라이트: 따뜻한 종이 배경 + 흰 카드
+ * - 다크: 순수 검정 배경 + 유리(반투명) 카드
+ * 테마는 시스템 설정을 따르고, <html data-theme="light|dark">로 강제할 수 있음
+ *
+ * 이 파일(mochestra_united)이 기준본. 통합 전 개별 앱의 사본은 이 파일을 따라감
+ *
+ * 2026-09-28 v2 변경
+ * - baton: 황토 → 꿀색 #e9cb3c. 라이트에서 노랑은 면으로만 쓰고 글자·포커스는 ink
+ * - emotion(프리지아): 청록 → 더스티 모브
+ * - 카드 간격 24 → 36
+ * - 색마다 -fill / on- 토큰을 둬서 baton(밝은 면+어두운 글자)과 탭 색(라이트: 진한 면+흰 글자)을 함께 표현
+ */
+
+:root {
+  color-scheme: light;
+
+  /* 배경 */
+  --surface: #f6f1ea;
+  --surface-raised: #ffffff;
+  --surface-inner: #faf7f2; /* 카드 안쪽 박스 */
+  --surface-overlay: #ffffff; /* 지도·사진 위에 띄우는 불투명 면 */
+
+  /* 글자·선 */
+  --ink: #241c15;
+  --ink-soft: #4a4036;
+  --ink-muted: #6b6154;
+  --line: #e4dccb;
+
+  /* 카드 */
+  --card-border: transparent;
+  --card-shadow: 0 4px 12px rgba(36, 28, 21, 0.08);
+  --card-blur: none;
+  --inner-border: var(--line);
+
+  /*
+   * 색별 토큰: 기본(면·아이콘·큰 글자) / strong(작은 글자) / fill(버튼 면) / on(fill 위 글자)
+   * baton 은 노랑이라 종이 배경과 대비가 약함(1.4) → 글자는 ink 로 대신하고 면에만 노랑
+   */
+  --baton: #e9cb3c;
+  --baton-strong: var(--ink);
+  --baton-fill: #e9cb3c;
+  --on-baton: #241c15; /* 10.4:1 */
+  --baton-edge: rgba(36, 28, 21, 0.18); /* 노랑 면이 종이 배경에 묻히지 않게 두르는 테두리 */
+
+  --morning: #d1502f;
+  --morning-strong: #b23f22;
+  --lunch: #6c7d3f;
+  --lunch-strong: #56652f;
+  --emotion: #a57582;
+  --emotion-strong: #94606e;
+  --video: #8c4f98;
+  --video-strong: #7a3f86;
+
+  /* 탭 색 버튼: 라이트는 strong 면 + 흰 글자 */
+  --morning-fill: var(--morning-strong);
+  --lunch-fill: var(--lunch-strong);
+  --emotion-fill: var(--emotion-strong);
+  --video-fill: var(--video-strong);
+  --on-tab: #ffffff;
+
+  /* 옅은 면: 이 위에 strong 글자를 올려도 4.5:1 유지 */
+  --accent-soft-mix: 8%;
+
+  /* 키보드 포커스 테두리: 노랑은 종이 위에서 안 보여서 라이트는 ink */
+  --focus-ring: var(--ink);
+
+  /* 상태 */
+  --success: #3a7442;
+  --warning: #8f5d07;
+  --danger: #b8352a;
+  --info: #3a6a8c;
+
+  /* 크기 */
+  --radius-card: 28px;
+  --radius-inner: 16px;
+  --radius-pill: 999px;
+  --radius-tabbar: 24px;
+  --card-gap: 36px;
+}
+
+/* 다크 토큰: 시스템이 다크이고 라이트를 강제하지 않았을 때 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --surface: #000000;
+    --surface-raised: rgba(255, 255, 255, 0.14);
+    --surface-inner: rgba(255, 255, 255, 0.06);
+    --surface-overlay: #242424;
+
+    --ink: #f1ede4;
+    --ink-soft: #c9c3b6;
+    --ink-muted: #a8a295;
+    --line: rgba(255, 255, 255, 0.12);
+
+    --card-border: rgba(255, 255, 255, 0.35);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    --card-blur: blur(16px) saturate(140%);
+    --inner-border: rgba(255, 255, 255, 0.2);
+
+    --baton: #e9cb3c;
+    --baton-strong: #e9cb3c; /* 9.7:1 on #242424 */
+    --baton-fill: #e9cb3c;
+    --on-baton: #1f1f1f;
+    --baton-edge: transparent;
+
+    --morning: #e57153;
+    --morning-strong: #ec9b86;
+    --lunch: #859c46;
+    --lunch-strong: #a0b860;
+    --emotion: #b18893;
+    --emotion-strong: #c6a8b0;
+    --video: #b77ec3;
+    --video-strong: #cba0d3;
+
+    /* 탭 색 버튼: 다크는 primary 면 + 어두운 글자 */
+    --morning-fill: var(--morning);
+    --lunch-fill: var(--lunch);
+    --emotion-fill: var(--emotion);
+    --video-fill: var(--video);
+    --on-tab: #1f1f1f;
+
+    --accent-soft-mix: 16%;
+    --focus-ring: var(--baton);
+
+    --success: #7ed48a;
+    --warning: #ffab4a;
+    --danger: #ff7a7a;
+    --info: #6cb4ff;
+  }
+}
+
+/* 다크 토큰: 직접 다크를 고른 경우 (위 블록과 같은 값) */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --surface: #000000;
+  --surface-raised: rgba(255, 255, 255, 0.14);
+  --surface-inner: rgba(255, 255, 255, 0.06);
+  --surface-overlay: #242424;
+
+  --ink: #f1ede4;
+  --ink-soft: #c9c3b6;
+  --ink-muted: #a8a295;
+  --line: rgba(255, 255, 255, 0.12);
+
+  --card-border: rgba(255, 255, 255, 0.35);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  --card-blur: blur(16px) saturate(140%);
+  --inner-border: rgba(255, 255, 255, 0.2);
+
+  --baton: #e9cb3c;
+  --baton-strong: #e9cb3c;
+  --baton-fill: #e9cb3c;
+  --on-baton: #1f1f1f;
+  --baton-edge: transparent;
+
+  --morning: #e57153;
+  --morning-strong: #ec9b86;
+  --lunch: #859c46;
+  --lunch-strong: #a0b860;
+  --emotion: #b18893;
+  --emotion-strong: #c6a8b0;
+  --video: #b77ec3;
+  --video-strong: #cba0d3;
+
+  --morning-fill: var(--morning);
+  --lunch-fill: var(--lunch);
+  --emotion-fill: var(--emotion);
+  --video-fill: var(--video);
+  --on-tab: #1f1f1f;
+
+  --accent-soft-mix: 16%;
+  --focus-ring: var(--baton);
+
+  --success: #7ed48a;
+  --warning: #ffab4a;
+  --danger: #ff7a7a;
+  --info: #6cb4ff;
+}
+
+/*
+ * 탭 컨텍스트: 컴포넌트는 --accent 계열만 참조하고, 탭 클래스가 실제 색을 고름
+ * --accent        큰 제목·숫자, 아이콘, 테두리 (대비 3:1 이상)
+ * --accent-strong 작은 글자, 링크 (대비 4.5:1 이상)
+ * --accent-fill   버튼·선택 면. --on-accent 글자와 4.5:1 이상
+ * --accent-edge   버튼 면 테두리 (baton 라이트에서만 보임)
+ * --accent-soft   조언 박스, 선택 배경처럼 넓은 면에 까는 옅은 색
+ * 탭 클래스가 없는 곳(공통 화면)은 baton
+ */
+:root,
+.tab-baton {
+  --accent: var(--baton);
+  --accent-strong: var(--baton-strong);
+  --accent-fill: var(--baton-fill);
+  --on-accent: var(--on-baton);
+  --accent-edge: var(--baton-edge);
+}
+.tab-morning {
+  --accent: var(--morning);
+  --accent-strong: var(--morning-strong);
+  --accent-fill: var(--morning-fill);
+  --on-accent: var(--on-tab);
+  --accent-edge: transparent;
+}
+.tab-lunch {
+  --accent: var(--lunch);
+  --accent-strong: var(--lunch-strong);
+  --accent-fill: var(--lunch-fill);
+  --on-accent: var(--on-tab);
+  --accent-edge: transparent;
+}
+.tab-emotion {
+  --accent: var(--emotion);
+  --accent-strong: var(--emotion-strong);
+  --accent-fill: var(--emotion-fill);
+  --on-accent: var(--on-tab);
+  --accent-edge: transparent;
+}
+.tab-video {
+  --accent: var(--video);
+  --accent-strong: var(--video-strong);
+  --accent-fill: var(--video-fill);
+  --on-accent: var(--on-tab);
+  --accent-edge: transparent;
+}
+
+:root,
+.tab-baton,
+.tab-morning,
+.tab-lunch,
+.tab-emotion,
+.tab-video {
+  --accent-soft: color-mix(in srgb, var(--accent) var(--accent-soft-mix), transparent);
+}
