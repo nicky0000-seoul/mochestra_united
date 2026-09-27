@@ -1,0 +1,12 @@
+/* 모닝팩 탭 전용: 다른 탭과 클래스 이름이 겹치지 않게 .morning-tab 안으로 한정 */
+.morning-tab {
+  .clock-display {
+    text-align: center;
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    padding: 8px 0;
+  }
+}

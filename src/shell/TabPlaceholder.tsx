@@ -1,16 +1,10 @@
-import ThemeToggle from './ThemeToggle';
+import TabHeader from './TabHeader';
 import './TabPlaceholder.css';
 
 // 아직 옮기지 않은 탭 자리
 const TabPlaceholder = ({ label }: { label: string }) => (
   <div className="placeholder">
-    <header className="placeholder-header">
-      <div className="placeholder-brand">
-        <span className="brand-mark" aria-hidden="true">M</span>
-        <h1>{label}</h1>
-      </div>
-      <ThemeToggle />
-    </header>
+    <TabHeader title={label} />
     <div className="placeholder-card">
       <p className="placeholder-title">{label} 옮기는 중</p>
       <p className="placeholder-text">기존 앱을 이 탭으로 옮기면 여기에 나타나요.</p>

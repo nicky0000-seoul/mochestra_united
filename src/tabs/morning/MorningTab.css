@@ -1,0 +1,12 @@
+/* 모닝팩 탭 전용 */
+.morning-tab {
+  .card-stack {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--card-gap);
+  }
+}

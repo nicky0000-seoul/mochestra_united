@@ -7,13 +7,14 @@ MOCHESTRA 통합 앱. 모닝팩 · 런치박스 · 프리지아 · 유튜브 네
 - 개발 서버: `npm run dev -- --port 5180` → http://localhost:5180 (`.claude/launch.json`의 `united`)
 - 빌드: `npm run build` (tsc + vite) / 린트: `npm run lint` (oxlint)
 - 이 폴더는 D 드라이브라 git이 "dubious ownership" 오류를 냄. `git -c safe.directory=D:/mochestra_united ...`로 실행하거나 `git config --global --add safe.directory D:/mochestra_united`를 한 번 실행
-- 배포: Vercel 예정. `vercel.json`이 모든 경로를 `index.html`로 보냄 (탭 주소 새로고침용)
+- 배포: Vercel — https://mochestra-united.vercel.app (`main` 푸시 시 자동 배포). `vercel.json`이 모든 경로를 `index.html`로 보냄 (탭 주소 새로고침용)
 
 ## 구조
 
 - `src/tabs.ts` — 네 탭의 주소 · 이름 · 탭 클래스 · 아이콘 (탭 추가/순서 변경은 여기만)
 - `src/App.tsx` — 탭별 라우트. 각 탭 화면은 `<section className="tab-screen tab-xxx">`로 감쌈 → 그 안의 `--accent`가 탭 색
-- `src/shell/` — `GlobalTabBar`(하단 전체 탭바), `ThemeToggle`, `TabPlaceholder`(아직 안 옮긴 탭)
+- `src/shell/` — `GlobalTabBar`(하단 전체 탭바), `TabHeader`(탭 공통 헤더: 브랜드 마크 + 탭 이름 + 테마 전환), `ThemeToggle`, `TabPlaceholder`(아직 안 옮긴 탭)
+- 옮겨 온 탭은 `App.tsx`의 `TAB_SCREENS`에 등록. 탭 CSS는 `.xxx-tab { ... }` 중첩으로 한정해 클래스 이름 충돌을 막음
 - `src/tabs/{morning,lunch,freesia,video}/` — 옮겨 올 각 앱의 코드 자리
 - `src/styles/tokens.css` — **MOCHESTRA 공통 토큰 기준본 (v2)**. 개별 앱 사본보다 이 파일이 우선
 
@@ -45,8 +46,10 @@ MOCHESTRA 통합 앱. 모닝팩 · 런치박스 · 프리지아 · 유튜브 네
 
 ### 다음 할 일
 - [x] GitHub 저장소 만들고 첫 커밋 푸시 — https://github.com/nicky0000-seoul/mochestra_united
-- [ ] Vercel 연결
-- [ ] 모닝팩 옮기기
+- [x] Vercel 연결 — https://mochestra-united.vercel.app (main 푸시 시 자동 배포). 프리지아 채팅 서버는 `.vercel.app` 을 이미 허용
+- [ ] YouTube API 키 웹사이트 제한에 `https://mochestra-united.vercel.app/*`, `http://localhost:5180/*` 추가 (사용자)
+- [x] 모닝팩 옮기기 — 2026-09-28 `src/tabs/morning/` (CSS는 `.morning-tab` 안으로 한정), 공통 헤더 `shell/TabHeader`. 대비 검사 88개 통과
+- [x] Vercel 환경 변수에 `VITE_KMA_SERVICE_KEY`, `VITE_UNSPLASH_ACCESS_KEY` 추가 (2026-09-28)
 - [ ] 유튜브 옮기기
 - [ ] 프리지아 옮기기
 - [ ] 런치박스 React로 옮기기

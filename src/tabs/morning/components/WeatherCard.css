@@ -1,0 +1,77 @@
+/* 모닝팩 탭 전용: 다른 탭과 클래스 이름이 겹치지 않게 .morning-tab 안으로 한정 */
+.morning-tab {
+  .weather-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 0;
+  }
+  
+  .weather-icon {
+    font-size: 40px;
+  }
+  
+  .weather-temp {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  
+  .weather-condition {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  
+  .weather-range {
+    margin-top: -4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  
+  .weather-note {
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+  
+  .dust {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  
+  .dust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 6px;
+    border-radius: var(--radius-inner);
+    border: 1px solid var(--inner-border);
+    background: var(--surface-inner);
+  }
+  
+  .dust-label {
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+  
+  .dust-grade {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  
+  .dust-grade.good { color: var(--info); }
+  .dust-grade.normal { color: var(--success); }
+  .dust-grade.bad { color: var(--warning); }
+  .dust-grade.very-bad { color: var(--danger); }
+  
+  .dust-value {
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+}

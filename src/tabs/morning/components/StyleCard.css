@@ -1,0 +1,205 @@
+/* 모닝팩 탭 전용: 다른 탭과 클래스 이름이 겹치지 않게 .morning-tab 안으로 한정 */
+.morning-tab {
+  .style-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 12px 0;
+  }
+  
+  .style-question {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  
+  .style-tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  .style-tag {
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--ink);
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--inner-border);
+    background: var(--surface-inner);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  
+  .style-tag:hover {
+    border-color: var(--accent);
+  }
+  
+  .style-tag.is-selected {
+    background: var(--accent-fill);
+    border-color: var(--accent-fill);
+    color: var(--on-accent);
+    font-weight: 600;
+  }
+  
+  .style-temps {
+    margin-top: -8px;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  
+  .style-advice {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: var(--accent-soft);
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--ink);
+    text-align: center;
+    word-break: keep-all;
+  }
+  
+  .style-set {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+    gap: 8px;
+  }
+  
+  .style-item {
+    font-family: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 6px;
+    border-radius: var(--radius-inner);
+    border: 1px solid var(--inner-border);
+    background: var(--surface-inner);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  
+  .style-item:hover {
+    border-color: var(--accent);
+  }
+  
+  .style-item-label {
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+  
+  .style-item-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    word-break: keep-all;
+  }
+  
+  .style-item.is-selected {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  
+  .style-item.is-selected .style-item-name {
+    color: var(--accent-strong);
+  }
+  
+  .style-extras-label {
+    align-self: center;
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+  
+  .style-actions {
+    width: 100%;
+    display: flex;
+    gap: 8px;
+  }
+  
+  .style-action {
+    flex: 1;
+    font-family: inherit;
+    font-size: 13px;
+    padding: 10px 0;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--inner-border);
+    background: none;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  
+  .style-action:hover {
+    border-color: var(--accent);
+  }
+  
+  .style-action.primary {
+    background: var(--accent-fill);
+    border-color: var(--accent-fill);
+    color: var(--on-accent);
+    font-weight: 600;
+  }
+  
+  .style-action.primary.is-selected {
+    background: none;
+    border-color: var(--accent);
+    color: var(--accent-strong);
+  }
+  
+  .style-photo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .style-photo-img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 18px;
+    background: var(--surface-inner);
+  }
+  
+  .style-photo-meta {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  
+  .style-credit {
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+  
+  .style-credit a {
+    color: inherit;
+  }
+  
+  .style-next {
+    flex-shrink: 0;
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--accent-strong);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .style-hint {
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+}

@@ -1,0 +1,74 @@
+/* 모닝팩 탭 전용: 다른 탭과 클래스 이름이 겹치지 않게 .morning-tab 안으로 한정 */
+.morning-tab {
+  .card {
+    background: var(--surface-raised);
+    border-radius: var(--radius-card);
+    padding: 28px 24px 18px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid var(--card-border);
+    -webkit-backdrop-filter: var(--card-blur);
+    backdrop-filter: var(--card-blur);
+  }
+  
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  
+  .icon-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+  }
+  
+  .card-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .card-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--ink-muted);
+  }
+  
+  .card-date {
+    flex: 1;
+    font-size: 14px;
+    color: var(--accent-strong);
+  }
+  
+  .close-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--inner-border);
+    background: var(--surface-inner);
+    color: var(--ink-soft);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  
+  .close-button:hover {
+    background: var(--accent-soft);
+    color: var(--ink);
+  }
+}
