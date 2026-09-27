@@ -1,0 +1,476 @@
+/* 런치박스 탭 전용: 다른 탭과 클래스 이름이 겹치지 않게 .lunch-tab 안으로 한정 */
+.lunch-tab {
+  /* display 를 지정한 요소도 hidden 속성이면 확실히 숨김 */
+  [hidden] { display: none !important; }
+
+  .lunch-body {
+    padding: 4px 20px 0;
+  }
+
+  /* 화면 전환 탭 (내 주변 식당 / 지도 검색) */
+  .view-tabs {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    background: var(--surface-raised);
+    border: 1px solid var(--card-border);
+    border-radius: calc(var(--radius-inner) + 4px);
+    box-shadow: var(--card-shadow);
+    -webkit-backdrop-filter: var(--card-blur);
+    backdrop-filter: var(--card-blur);
+  }
+
+  .view-tab {
+    flex: 1;
+    min-height: 44px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-inner);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .view-tab:hover:not(.active) { color: var(--ink); }
+
+  .view-tab.active {
+    background: var(--accent-fill);
+    color: var(--on-accent);
+    font-weight: 700;
+  }
+
+  /* 검색창 */
+  .search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 16px;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-inner);
+    background: var(--surface-raised);
+    box-shadow: var(--card-shadow);
+    -webkit-backdrop-filter: var(--card-blur);
+    backdrop-filter: var(--card-blur);
+    cursor: text;
+    transition: box-shadow 0.15s, border-color 0.15s;
+  }
+
+  .search svg {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: var(--ink-muted);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+  }
+
+  .search input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 0;
+    font-size: 16px;
+    font-family: inherit;
+    border: none;
+    background: transparent;
+    color: var(--ink);
+    outline: none;
+  }
+
+  .search input::placeholder { color: var(--ink-muted); }
+
+  .search:focus-within {
+    border-color: var(--accent);
+    box-shadow: var(--card-shadow), 0 0 0 3px var(--accent-soft);
+  }
+
+  /* 정렬 / 음식 종류 칩 */
+  .chips {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .chips::-webkit-scrollbar { display: none; }
+
+  .chip-group { display: flex; gap: 6px; }
+
+  .chip-divider {
+    flex: none;
+    width: 1px;
+    height: 24px;
+    background: var(--line);
+  }
+
+  .chip {
+    flex: none;
+    min-height: 38px;
+    padding: 0 14px;
+    font-family: inherit;
+    font-size: 14px;
+    border: 1px solid var(--inner-border);
+    border-radius: var(--radius-pill);
+    background: var(--surface-inner);
+    color: var(--ink-soft);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+
+  .chip:hover { border-color: var(--accent); color: var(--ink); }
+
+  .chip[aria-checked="true"] {
+    border-color: var(--accent-fill);
+    background: var(--accent-fill);
+    color: var(--on-accent);
+    font-weight: 700;
+  }
+
+  /* 결과 목록 */
+  .result-list {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+    gap: 16px;
+  }
+
+  .result {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-card);
+    background: var(--surface-raised);
+    box-shadow: var(--card-shadow);
+    -webkit-backdrop-filter: var(--card-blur);
+    backdrop-filter: var(--card-blur);
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .result:hover { border-color: var(--accent); }
+
+  /* 선택: 테두리 + 왼쪽 막대 (색만으로 구분하지 않도록 막대를 함께 씀) */
+  .result.selected {
+    border-color: var(--accent);
+    box-shadow: var(--card-shadow), inset 6px 0 0 var(--accent), 0 0 0 2px var(--accent);
+  }
+
+  .thumb {
+    flex: none;
+    width: 72px;
+    height: 72px;
+    display: grid;
+    place-items: center;
+    border-radius: var(--radius-inner);
+    background: var(--accent-soft);
+    font-size: 34px;
+  }
+
+  .info { flex: 1; min-width: 0; }
+
+  .info h3 {
+    margin: 0 0 4px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .meta,
+  .sub {
+    margin: 0;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  .sub { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; }
+
+  .link {
+    color: var(--accent-strong);
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .link:hover { text-decoration: underline; }
+
+  /* 로딩: 카드 모양 뼈대 */
+  .skeleton { cursor: default; }
+  .skeleton:hover { border-color: var(--card-border); }
+
+  .skeleton .thumb,
+  .skeleton .line {
+    background: linear-gradient(90deg, var(--surface-inner) 0%, var(--line) 50%, var(--surface-inner) 100%);
+    background-size: 200% 100%;
+    animation: lunch-shimmer 1.2s infinite linear;
+  }
+
+  .skeleton .line { height: 14px; border-radius: 6px; margin: 8px 0; }
+  .skeleton .line.short { width: 45%; }
+  .skeleton .line.mid { width: 70%; }
+
+  .loading-caption {
+    margin: 20px 0 0;
+    color: var(--ink-muted);
+    font-size: 14px;
+  }
+
+  /* 안내 화면 (위치 권한 / 결과 없음) */
+  .notice {
+    margin-top: 32px;
+    padding: 36px 24px;
+    text-align: center;
+    border-radius: var(--radius-card);
+    background: var(--surface-raised);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    -webkit-backdrop-filter: var(--card-blur);
+    backdrop-filter: var(--card-blur);
+  }
+
+  .notice .icon { font-size: 44px; }
+  .notice h2 { margin: 12px 0 8px; font-size: 20px; color: var(--ink); }
+  .notice p { margin: 0 auto; max-width: 420px; color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
+
+  .notice .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    min-height: 46px;
+    padding: 0 22px;
+    font-family: inherit;
+    font-size: 15px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--inner-border);
+    background: var(--surface-inner);
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+
+  .btn:hover { border-color: var(--accent); }
+
+  .btn.primary {
+    border-color: var(--accent-fill);
+    background: var(--accent-fill);
+    color: var(--on-accent);
+    font-weight: 700;
+  }
+
+  .btn.more {
+    display: block;
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .btn:disabled { opacity: 0.6; cursor: default; }
+
+  .banner {
+    margin: 16px 0 0;
+    padding: 12px 16px;
+    border-radius: var(--radius-inner);
+    background: var(--accent-soft);
+    border: 1px solid var(--inner-border);
+    color: var(--ink);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .banner button {
+    flex: none;
+    border: none;
+    background: none;
+    font-family: inherit;
+    color: var(--accent-strong);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  /* 지도: 화면을 크게 채우고 결과 카드는 위에 띄움 */
+  .map-wrap {
+    position: relative;
+    margin-top: 16px;
+    height: calc(100dvh - var(--tabbar-height) - 260px);
+    min-height: 420px;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--card-border);
+    overflow: hidden;
+  }
+
+  .map {
+    position: absolute;
+    inset: 0;
+    background: var(--surface-inner);
+  }
+
+  /* 카카오 지도 위에 올리는 식당 핀. 지도 타일은 테마와 상관없이 밝아서 흰 테두리로 띄움 */
+  .kpin {
+    position: relative;
+    display: block;
+    width: 26px;
+    height: 26px;
+    margin-bottom: 6px;
+    padding: 0;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    background: var(--accent-fill);
+    border: 2px solid #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  /* 손가락으로 누르기 쉽게 터치 영역 확대 */
+  .kpin::after { content: ""; position: absolute; inset: -10px; }
+
+  .kpin.selected {
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    border-color: var(--accent-fill);
+    border-width: 4px;
+  }
+
+  /* 내 위치: 지도 관례대로 파란 점 */
+  .kme {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #3b82f6;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0.25);
+    pointer-events: none;
+  }
+
+  .map-loading {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    font-size: 15px;
+  }
+
+  .spinner {
+    width: 22px;
+    height: 22px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: lunch-spin 0.8s linear infinite;
+  }
+
+  .map-btn {
+    position: absolute;
+    z-index: 2;
+    border: 1px solid var(--inner-border);
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .research {
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-height: 42px;
+    padding: 0 20px;
+    border-radius: var(--radius-pill);
+    border-color: var(--accent-fill);
+    background: var(--accent-fill);
+    color: var(--on-accent);
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .locate {
+    top: 16px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--surface-overlay);
+  }
+
+  .locate svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  /* 지도 위 시트: 밝은 지도 위에서도 읽히도록 불투명 overlay 면 */
+  .map-sheet {
+    position: absolute;
+    z-index: 2;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 96px;
+    padding: 16px;
+    border: 1px solid var(--inner-border);
+    border-radius: var(--radius-card);
+    background: var(--surface-overlay);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  .map-sheet .thumb { width: 64px; height: 64px; font-size: 30px; }
+  .map-sheet .hint { color: var(--ink-soft); width: 100%; text-align: center; font-size: 14px; }
+
+  .toast {
+    position: absolute;
+    z-index: 3;
+    top: 72px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 18px;
+    border-radius: var(--radius-pill);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+}
+
+@keyframes lunch-shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+@keyframes lunch-spin { to { transform: rotate(360deg); } }

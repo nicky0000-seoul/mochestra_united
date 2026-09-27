@@ -56,5 +56,7 @@ MOCHESTRA 통합 앱. 모닝팩 · 런치박스 · 프리지아 · 유튜브 네
 - [x] 프리지아 옮기기 — 2026-09-28 `src/tabs/freesia/` (/freesia/chat · history · stats, 공통 `TabHeader` + `SectionTabs`, CSS는 `.freesia-tab` 안으로 한정 · @keyframes 는 밖). `App.tsx`에서 lazy 로 불러와 프리지아 탭을 열 때만 firebase(익명 로그인)와 recharts 를 받음. Firebase 승인된 도메인에 mochestra-united.vercel.app 추가됨
 - [ ] 로컬(localhost:5180)에서 채팅 API 는 CORS 로 막힘 — 채팅 서버(`D:\freesia_1.0.1\server.js`) allowedOrigins 에 `http://localhost:5180` 추가 필요. 배포 사이트(.vercel.app)는 허용됨
 - [ ] 원본에서 가져온 린트 경고: `freesia/components/HistoryPage.tsx`(effect 안 setState), `HomePage.tsx`(generateConversationId 선언 전 참조)
-- [ ] 런치박스 React로 옮기기
+- [x] 런치박스 React로 옮기기 — 2026-09-28 `src/tabs/lunch/` (lib/kakao.js + NearbyView · MapView). 키는 `.env` 의 `VITE_KAKAO_APP_KEY`. 카카오 허용 도메인인 localhost:5500 에서 목록·필터·더 보기·선택·지도 핀·시트 확인
+- [x] 카카오 개발자 콘솔 › 앱 › 플랫폼 키 › JavaScript SDK 도메인에 `http://localhost:5180`, `https://mochestra-united.vercel.app` 추가 (2026-09-28, 5180 에서 SDK 로드 확인)
+- [x] Vercel 환경 변수에 `VITE_KAKAO_APP_KEY` 추가 (2026-09-28)
 - [ ] 글꼴 통일 (Pretendard / Noto Sans KR / 디자인 시스템 v1 글꼴 중 결정)
