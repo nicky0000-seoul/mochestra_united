@@ -1,0 +1,122 @@
+/* 프리지아 탭 전용: 다른 탭과 클래스 이름이 겹치지 않게 .freesia-tab 안으로 한정 */
+.freesia-tab {
+  /* 히스토리 화면. 색은 tokens.css / emotions.css 변수만 사용 */
+
+  /* 빈 상태 */
+  .empty-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    color: var(--ink-muted);
+  }
+
+  .empty-container svg {
+    color: var(--ink-muted);
+    opacity: 0.5;
+    margin-bottom: 16px;
+  }
+
+  .empty-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+
+  .empty-subtext {
+    font-size: 14px;
+    color: var(--ink-muted);
+  }
+
+  /* 대화 목록 */
+  .conversations-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--card-gap);
+  }
+
+  /* 대화 카드: 왼쪽 막대가 감정 색 (이모지·이름과 함께 표시) */
+  .conversation-card {
+    --emo: var(--emo-neutral);
+    position: relative;
+    overflow: hidden;
+    padding: 18px 20px 18px 26px;
+    cursor: pointer;
+    animation: fade-in 0.3s ease-out;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .conversation-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 6px;
+    background: var(--emo);
+  }
+
+  .conversation-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+
+  .card-date {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    letter-spacing: 0.3px;
+    margin-bottom: 10px;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .card-emoji {
+    font-size: 22px;
+  }
+
+  .card-emotion {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .card-preview {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  .card-message-count {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* 모바일 최적화 (768px 이하) */
+  @media (max-width: 768px) {
+    .conversation-card { padding: 16px 16px 16px 22px; }
+    .card-preview { font-size: 14px; }
+  }
+}

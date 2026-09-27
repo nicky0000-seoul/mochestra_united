@@ -1,4 +1,4 @@
-import type { ReactElement } from 'react';
+import { lazy, Suspense, type ReactElement } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import GlobalTabBar from './shell/GlobalTabBar';
 import TabPlaceholder from './shell/TabPlaceholder';
@@ -6,10 +6,18 @@ import MorningTab from './tabs/morning/MorningTab';
 import VideoTab from './tabs/video/VideoTab';
 import { TABS } from './tabs';
 
+// 프리지아는 firebase(익명 로그인)와 차트 라이브러리를 쓰므로 탭을 열 때만 불러옴
+const FreesiaTab = lazy(() => import('./tabs/freesia/FreesiaTab'));
+
 // 옮겨 온 탭의 화면. 없으면 자리 표시 화면
 const TAB_SCREENS: Record<string, ReactElement> = {
   '/morning': <MorningTab />,
   '/video': <VideoTab />,
+  '/freesia': (
+    <Suspense fallback={<p className="tab-loading">불러오는 중…</p>}>
+      <FreesiaTab />
+    </Suspense>
+  ),
 };
 
 // 탭마다 화면을 탭 클래스로 감싸서 그 안의 --accent 가 탭 색이 되게 함.

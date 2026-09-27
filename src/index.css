@@ -51,3 +51,10 @@ body {
   border: 1px solid var(--baton-edge);
   border-radius: 10px;
 }
+
+/* 탭을 처음 불러오는 동안 */
+.tab-loading {
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--ink-muted);
+}

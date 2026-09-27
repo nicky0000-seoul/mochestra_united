@@ -1,0 +1,193 @@
+/* 프리지아 탭 전용: 다른 탭과 클래스 이름이 겹치지 않게 .freesia-tab 안으로 한정 */
+.freesia-tab {
+  /* 통계 화면. 색은 tokens.css / emotions.css 변수만 사용 */
+
+  .stats-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--card-gap);
+  }
+
+  /* 섹션: 공통 카드 (.surface-card) */
+  .stats-section {
+    padding: 20px;
+    animation: fade-in 0.3s ease-out;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+
+  /* 대화 현황 */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 20px;
+    text-align: center;
+    background: var(--surface-inner);
+    border: 1px solid var(--inner-border);
+    border-radius: var(--radius-inner);
+  }
+
+  .stat-icon {
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 8px 0 4px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-label {
+    font-size: 14px;
+    color: var(--ink-muted);
+  }
+
+  /* 차트: 조각 사이 틈(stroke)과 같은 색의 불투명 면 */
+  .chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--chart-surface);
+    border: 1px solid var(--inner-border);
+    border-radius: var(--radius-inner);
+  }
+
+  .empty-chart {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-muted);
+  }
+
+  /* 범례: 색은 점으로만, 글자는 ink */
+  .emotion-legend {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 16px;
+    width: 100%;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  .legend-color {
+    flex-shrink: 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .legend-text {
+    color: var(--ink-soft);
+  }
+
+  /* 차트 툴팁 */
+  .chart-tooltip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--surface-overlay);
+    border: 1px solid var(--inner-border);
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .chart-tooltip-name {
+    font-weight: 700;
+  }
+
+  .chart-tooltip-value {
+    color: var(--ink-soft);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* 그래프 준비 중 */
+  .graph-placeholder {
+    padding: 56px 20px;
+    text-align: center;
+    border: 1px dashed var(--inner-border);
+    border-radius: var(--radius-inner);
+  }
+
+  .placeholder-text {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+
+  .placeholder-subtext {
+    font-size: 14px;
+    color: var(--ink-muted);
+  }
+
+  /* AI 인사이트 */
+  .insights-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .insight-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: var(--surface-inner);
+    border: 1px solid var(--inner-border);
+    border-radius: var(--radius-inner);
+  }
+
+  .insight-icon {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--accent);
+  }
+
+  .insight-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* 모바일 최적화 (768px 이하) */
+  @media (max-width: 768px) {
+    .stats-section { padding: 16px; }
+    .section-title { font-size: 15px; }
+    .stat-card { padding: 16px; }
+    .stat-value { font-size: 28px; }
+    .chart-container { padding: 16px; }
+    .emotion-legend { grid-template-columns: 1fr; }
+  }
+
+  /* 작은 모바일 (480px 이하) */
+  @media (max-width: 480px) {
+    .stat-value { font-size: 24px; }
+    .stat-label { font-size: 13px; }
+  }
+}

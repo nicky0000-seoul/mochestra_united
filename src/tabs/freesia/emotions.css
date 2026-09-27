@@ -1,0 +1,57 @@
+/*
+ * 프리지아 감정 색 (MOCHESTRA 공통 톤)
+ * 통계 도넛 차트에서 이웃 조각끼리 구분되도록 dataviz 검증 스크립트로 확인한 값.
+ * 도넛 순서는 src/emotions.ts 의 EMOTIONS 순서를 따름 — 순서를 바꾸면 재검증할 것.
+ * 글자에는 쓰지 않음 (글자는 ink 토큰). 넓은 면에는 color-mix 로 옅게 깔아 씀.
+ */
+
+:root {
+  --emo-joy: #eda100;      /* 기쁨 */
+  --emo-calm: #1baf7a;     /* 평온 */
+  --emo-sad: #2a78d6;      /* 슬픔 */
+  --emo-anger: #e34948;    /* 분노 */
+  --emo-depress: #4a3aa7;  /* 우울 */
+  --emo-neutral: #6b6154;  /* 일반 */
+  --emo-lonely: #e87ba4;   /* 외로움 */
+
+  /* 차트 조각 사이 틈 = 차트가 놓인 면의 실제 색 */
+  --chart-surface: #faf7f2;
+
+  /* 원래 프리지아 앱의 크림: 인사 카드·프리지아 말풍선 면 (ink 글자 14:1 이상) */
+  --freesia-cream: #faeacb;
+  --freesia-cream-edge: #f0d9ae; /* 종이 배경과 거의 같은 밝기라 테두리로 구분 */
+  --freesia-cream-2: #ffde9d;
+  --freesia-cream-2-edge: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --emo-joy: #c98500;
+    --emo-calm: #199e70;
+    --emo-sad: #3987e5;
+    --emo-anger: #e66767;
+    --emo-depress: #9085e9;
+    --emo-neutral: #a39b8e;
+    --emo-lonely: #d55181;
+    --freesia-cream: color-mix(in srgb, #faeacb 10%, #242424);
+    --freesia-cream-edge: color-mix(in srgb, #faeacb 30%, transparent);
+    --freesia-cream-2: color-mix(in srgb, #ffde9d 14%, #242424);
+    --freesia-cream-2-edge: color-mix(in srgb, #ffde9d 25%, transparent);
+    --chart-surface: #313131;
+  }
+}
+
+:root[data-theme="dark"] {
+  --emo-joy: #c98500;
+  --emo-calm: #199e70;
+  --emo-sad: #3987e5;
+  --emo-anger: #e66767;
+  --emo-depress: #9085e9;
+  --emo-neutral: #a39b8e;
+  --emo-lonely: #d55181;
+  --chart-surface: #313131;
+  --freesia-cream: color-mix(in srgb, #faeacb 10%, #242424);
+  --freesia-cream-edge: color-mix(in srgb, #faeacb 30%, transparent);
+  --freesia-cream-2: color-mix(in srgb, #ffde9d 14%, #242424);
+  --freesia-cream-2-edge: color-mix(in srgb, #ffde9d 25%, transparent);
+}

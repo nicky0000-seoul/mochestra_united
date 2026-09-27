@@ -1,0 +1,316 @@
+/* 프리지아 탭 전용: 다른 탭과 클래스 이름이 겹치지 않게 .freesia-tab 안으로 한정 */
+.freesia-tab {
+  /* 홈(채팅) 화면. 색은 tokens.css / emotions.css 변수만 사용 */
+
+  .home-main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 환영 섹션 */
+  .welcome-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    animation: fade-in 0.5s ease-out;
+  }
+
+  /* 인사 카드: 원래 프리지아 앱의 크림색 */
+  .welcome-message {
+    padding: 24px 20px;
+    background: var(--freesia-cream);
+    border-color: var(--freesia-cream-edge);
+  }
+
+  .welcome-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    text-align: center;
+  }
+
+  .highlight {
+    color: var(--accent-strong);
+    font-weight: 700;
+  }
+
+  .question {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    text-align: center;
+    margin: 8px 0 0;
+  }
+
+  /* 텍스트 입력 (환영 화면) */
+  .text-input {
+    width: 100%;
+    padding: 16px 18px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--ink);
+    background: var(--surface-raised);
+    border: 1px solid var(--inner-border);
+    border-radius: var(--radius-inner);
+    -webkit-backdrop-filter: var(--card-blur);
+    backdrop-filter: var(--card-blur);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .text-input:focus,
+  .chat-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+
+  .text-input::placeholder,
+  .chat-input::placeholder {
+    color: var(--ink-muted);
+  }
+
+  /* 감정 버튼: 감정 색은 옅은 면 + 테두리로만, 이름은 ink */
+  .emotions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .emotion-button {
+    --emo: var(--accent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 16px;
+    font-family: inherit;
+    cursor: pointer;
+    background: color-mix(in srgb, var(--emo) 12%, var(--surface-raised));
+    border: 1px solid color-mix(in srgb, var(--emo) 45%, transparent);
+    border-radius: var(--radius-inner);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .emotion-button:hover {
+    transform: translateY(-3px);
+    background: color-mix(in srgb, var(--emo) 20%, var(--surface-raised));
+    box-shadow: var(--card-shadow);
+  }
+
+  .emotion-button:active {
+    transform: translateY(-1px);
+  }
+
+  .emotion-emoji {
+    font-size: 32px;
+  }
+
+  .emotion-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .hint-text {
+    text-align: center;
+    font-size: 14px;
+    color: var(--ink-muted);
+  }
+
+  /* 채팅 섹션 */
+  .chat-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 16px;
+  }
+
+  .messages-container {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px 0;
+  }
+
+  .message {
+    display: flex;
+    animation: slide-up 0.3s ease-out;
+  }
+
+  .user-message {
+    justify-content: flex-end;
+  }
+
+  .assistant-message {
+    justify-content: flex-start;
+  }
+
+  .message-bubble {
+    max-width: 75%;
+    padding: 14px 18px;
+    border-radius: 20px;
+    font-size: 15px;
+    line-height: 1.55;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+  }
+
+  .user-message .message-bubble {
+    background: var(--accent-fill);
+    color: var(--on-accent);
+    border-bottom-right-radius: 6px;
+  }
+
+  /* 프리지아 말풍선: 살구 크림 */
+  .assistant-message .message-bubble {
+    background: var(--freesia-cream-2);
+    color: var(--ink);
+    border: 1px solid var(--freesia-cream-2-edge);
+    border-bottom-left-radius: 6px;
+  }
+
+  /* 로딩 인디케이터 */
+  .message-bubble.loading {
+    padding: 16px 22px;
+  }
+
+  .typing-indicator {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .typing-indicator span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: bounce 1.4s infinite;
+  }
+
+  .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+  /* 새로 시작하기 */
+  .reset-button {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 16px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    background: var(--surface-inner);
+    border: 1px solid var(--inner-border);
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .reset-button:hover {
+    border-color: var(--accent);
+    color: var(--ink);
+  }
+
+  /* 채팅 입력 */
+  .chat-input-section {
+    display: flex;
+    gap: 10px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+  }
+
+  .chat-input {
+    flex: 1;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--ink);
+    background: var(--surface-raised);
+    border: 1px solid var(--inner-border);
+    border-radius: var(--radius-pill);
+    -webkit-backdrop-filter: var(--card-blur);
+    backdrop-filter: var(--card-blur);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .chat-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .send-button {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: var(--accent-fill);
+    color: var(--on-accent);
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .send-button:hover:not(:disabled) {
+    transform: scale(1.05);
+  }
+
+  .send-button:active:not(:disabled) {
+    transform: scale(0.95);
+  }
+
+  .send-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+
+
+
+
+  /* 모바일 최적화 (768px 이하) */
+  @media (max-width: 768px) {
+    .welcome-message { padding: 20px 16px; }
+    .welcome-text { font-size: 15px; }
+    .question { font-size: 18px; }
+    .emotions-grid { gap: 10px; }
+    .emotion-button { padding: 16px 12px; }
+    .emotion-emoji { font-size: 28px; }
+    .emotion-name { font-size: 14px; }
+
+    .text-input,
+    .chat-input {
+      font-size: 14px;
+    }
+
+    .message-bubble {
+      font-size: 14px;
+      max-width: 85%;
+    }
+  }
+
+  /* 작은 모바일 (480px 이하) */
+  @media (max-width: 480px) {
+    .emotions-grid { gap: 8px; }
+    .emotion-button { padding: 14px 10px; }
+    .emotion-emoji { font-size: 24px; }
+    .emotion-name { font-size: 13px; }
+  }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-8px); }
+}

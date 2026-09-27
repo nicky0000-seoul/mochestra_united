@@ -53,6 +53,8 @@ MOCHESTRA 통합 앱. 모닝팩 · 런치박스 · 프리지아 · 유튜브 네
 - [x] 유튜브 옮기기 — 2026-09-28 `src/tabs/video/` (iPad 비율 액자 → 일반 카드 `.video-card`, CSS는 `.video-tab` 안으로 한정). 검색·재생 확인, 대비 검사 50개 통과
 - [ ] 탭을 옮겨 다니면 각 탭 상태(유튜브 검색 결과·재생 중인 영상 등)가 초기화됨. 필요하면 탭 화면을 숨김 처리로 유지하는 방식 검토
 - [ ] `video/components/KeyDialog.jsx` 린트 경고(effect 안 setState) — 원본에서 가져온 것
-- [ ] 프리지아 옮기기
+- [x] 프리지아 옮기기 — 2026-09-28 `src/tabs/freesia/` (/freesia/chat · history · stats, 공통 `TabHeader` + `SectionTabs`, CSS는 `.freesia-tab` 안으로 한정 · @keyframes 는 밖). `App.tsx`에서 lazy 로 불러와 프리지아 탭을 열 때만 firebase(익명 로그인)와 recharts 를 받음. Firebase 승인된 도메인에 mochestra-united.vercel.app 추가됨
+- [ ] 로컬(localhost:5180)에서 채팅 API 는 CORS 로 막힘 — 채팅 서버(`D:\freesia_1.0.1\server.js`) allowedOrigins 에 `http://localhost:5180` 추가 필요. 배포 사이트(.vercel.app)는 허용됨
+- [ ] 원본에서 가져온 린트 경고: `freesia/components/HistoryPage.tsx`(effect 안 setState), `HomePage.tsx`(generateConversationId 선언 전 참조)
 - [ ] 런치박스 React로 옮기기
 - [ ] 글꼴 통일 (Pretendard / Noto Sans KR / 디자인 시스템 v1 글꼴 중 결정)
