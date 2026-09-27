@@ -3,11 +3,13 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import GlobalTabBar from './shell/GlobalTabBar';
 import TabPlaceholder from './shell/TabPlaceholder';
 import MorningTab from './tabs/morning/MorningTab';
+import VideoTab from './tabs/video/VideoTab';
 import { TABS } from './tabs';
 
 // 옮겨 온 탭의 화면. 없으면 자리 표시 화면
 const TAB_SCREENS: Record<string, ReactElement> = {
   '/morning': <MorningTab />,
+  '/video': <VideoTab />,
 };
 
 // 탭마다 화면을 탭 클래스로 감싸서 그 안의 --accent 가 탭 색이 되게 함.

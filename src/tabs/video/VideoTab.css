@@ -1,0 +1,264 @@
+/* 유튜브 탭 전용: 다른 탭과 클래스 이름이 겹치지 않게 .video-tab 안으로 한정 */
+.video-tab {
+  --row-h: clamp(42px, 6vh, 56px);
+  --row-gap: clamp(8px, 1.4vh, 12px);
+  
+  /* 유튜브 카드 (원래 iPad 비율 액자 → 통합 앱에서는 일반 카드) */
+  .video-card {
+    margin: 8px 20px 0;
+    background: var(--surface-raised);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--card-shadow);
+    -webkit-backdrop-filter: var(--card-blur);
+    backdrop-filter: var(--card-blur);
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  /* 탭 */
+  .tabs {
+    display: flex;
+    gap: clamp(8px, 1.6vw, 14px);
+    flex-shrink: 0;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: clamp(10px, 1.6vh, 16px) 8px;
+    border-radius: var(--radius-inner);
+    border: 1px solid var(--inner-border);
+    background: var(--surface-inner);
+    color: var(--ink-muted);
+    font-size: clamp(13px, 1.4vw, 16px);
+    font-family: inherit;
+    cursor: pointer;
+    transition: background .15s, border-color .15s, color .15s;
+  }
+  .tab-btn:hover { border-color: var(--accent); color: var(--ink); }
+  .tab-btn.active {
+    background: var(--accent-fill);
+    border-color: var(--accent-fill);
+    color: var(--on-accent);
+    font-weight: 700;
+  }
+  
+  /* 패널 */
+  .panel {
+    display: none;
+    flex-direction: column;
+    gap: inherit;
+    flex-shrink: 0; /* 창이 낮아도 검색창·목록은 줄지 않음 (대신 플레이어가 줄어듦) */
+  }
+  .panel.active { display: flex; }
+  
+  /* 검색창 */
+  .search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--surface-inner);
+    border: 1px solid var(--inner-border);
+    border-radius: var(--radius-pill);
+    height: clamp(40px, 5.2vh, 64px);
+    padding: 0;
+    flex-shrink: 0;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .search:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .search input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-size: clamp(15px, 1.6vw, 20px);
+    color: var(--ink);
+    text-align: center;
+    padding: 0 clamp(36px, 4vw, 52px); /* 양쪽 여백을 같게 해서 가운데 정렬 유지 */
+  }
+  .search input::placeholder { color: var(--ink-muted); }
+  .search button {
+    position: absolute; right: clamp(8px, 1.4vw, 20px);
+    border: 0;
+    background: none;
+    color: var(--ink-soft);
+    cursor: pointer;
+    width: 32px; height: 32px;
+    display: grid; place-items: center;
+  }
+  .search button:hover { color: var(--ink); }
+  .search svg { width: 22px; height: 22px; }
+  
+  /* 리스트 (검색결과 / 즐겨찾기 / 추천) */
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--row-gap);
+    min-height: calc(3 * var(--row-h) + 2 * var(--row-gap) + 4px);
+    max-height: calc(4 * var(--row-h) + 3 * var(--row-gap) + 4px);
+    overflow-y: auto;
+    flex: 0 1 auto;
+    padding: 2px;
+  }
+  .list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: var(--row-h);
+    border: 1px solid var(--inner-border);
+    border-radius: var(--radius-inner);
+    padding: 0 clamp(14px, 2vw, 22px);
+    background: var(--surface-inner);
+    cursor: pointer;
+    transition: border-color .15s, background .15s;
+  }
+  .list-item:hover { border-color: var(--accent); }
+  /* 재생 중: 테두리 + 옅은 면 + 굵은 제목 (색만으로 구분하지 않음) */
+  .list-item.active-item {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .list-item.active-item .title { font-weight: 700; }
+  .list-item .title {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--ink);
+    font-size: clamp(14px, 1.5vw, 17px);
+  }
+  .star-btn {
+    flex-shrink: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    width: 26px; height: 26px;
+    display: grid; place-items: center;
+  }
+  .star-btn svg {
+    width: 100%; height: 100%;
+    fill: none;
+    stroke: var(--accent); stroke-width: 1.8; stroke-linejoin: round;
+    transition: fill .15s;
+  }
+  .star-btn.is-fav svg { fill: var(--accent); }
+  
+  .empty {
+    padding: clamp(14px, 2.4vh, 22px);
+    text-align: center;
+    color: var(--ink-muted);
+    font-size: clamp(14px, 1.5vw, 17px);
+    border: 1px dashed var(--inner-border);
+    border-radius: var(--radius-inner);
+  }
+  
+  /* 플레이어 */
+  .player {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--accent-soft);
+    border: 1px solid var(--inner-border);
+    border-radius: 20px;
+    overflow: hidden;
+    display: grid; place-items: center;
+    /* 세로 공간이 모자라면 플레이어 높이가 줄어듦. 영상은 iframe 안에서 레터박스 처리됨 */
+    flex: 0 1 auto;
+    min-height: 120px;
+  }
+  .player .play {
+    border: 0; background: none; cursor: pointer;
+    color: var(--accent);
+    width: 22%; aspect-ratio: 1; display: grid; place-items: center;
+    transition: transform .15s;
+  }
+  .player .play:hover { transform: scale(1.08); }
+  .player .play svg { width: 70%; }
+  .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; background: #000; }
+  
+  .hint { color: var(--ink-muted); font-size: 13px; text-align: center; flex-shrink: 0; }
+  .hint a { color: var(--accent-strong); cursor: pointer; text-decoration: underline; }
+  
+  @media (max-width: 560px) {
+    .video-card {
+      margin: 4px 12px 0;
+      padding: 18px 14px;
+      gap: 12px;
+    }
+  
+    .tab-btn {
+      padding: 9px 6px;
+      font-size: 13px;
+    }
+  
+    .search {
+      height: 44px;
+    }
+  
+    .search input {
+      font-size: 15px;
+      padding: 0 36px;
+    }
+  
+    .list-item {
+      padding: 0 14px;
+    }
+  
+    .player {
+      min-height: 180px;
+      border-radius: 16px;
+    }
+  
+    .player .play {
+      width: 24%;
+    }
+  
+    .hint {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+  }
+  
+  @media (max-width: 360px) {
+    .video-card {
+      padding: 14px 12px;
+    }
+  
+    .search input {
+      font-size: 14px;
+    }
+  
+    .list-item .title {
+      font-size: 13px;
+    }
+  }
+  
+  /* API 키 입력: 페이지 위에 뜨므로 불투명 overlay 면 */
+  dialog {
+    margin: auto;
+    border: 1px solid var(--inner-border); border-radius: 20px; padding: 24px; width: min(420px, 90vw);
+    background: var(--surface-overlay); color: var(--ink);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .3);
+  }
+  dialog::backdrop { background: rgba(0,0,0,.55); }
+  dialog h2 { font-size: 18px; margin-bottom: 8px; }
+  dialog p { font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-bottom: 14px; }
+  dialog input {
+    width: 100%; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--inner-border);
+    font-size: 14px; margin-bottom: 14px; background: var(--surface-inner); color: var(--ink);
+  }
+  dialog input::placeholder { color: var(--ink-muted); }
+  dialog input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  dialog .row { display: flex; gap: 8px; justify-content: flex-end; }
+  dialog button {
+    border: 0; border-radius: var(--radius-pill); padding: 8px 18px; font-size: 14px; cursor: pointer; font-family: inherit;
+  }
+  dialog .primary { background: var(--accent-fill); color: var(--on-accent); font-weight: 600; }
+  dialog .ghost { background: transparent; color: var(--ink-soft); }
+}

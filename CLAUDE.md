@@ -47,10 +47,12 @@ MOCHESTRA 통합 앱. 모닝팩 · 런치박스 · 프리지아 · 유튜브 네
 ### 다음 할 일
 - [x] GitHub 저장소 만들고 첫 커밋 푸시 — https://github.com/nicky0000-seoul/mochestra_united
 - [x] Vercel 연결 — https://mochestra-united.vercel.app (main 푸시 시 자동 배포). 프리지아 채팅 서버는 `.vercel.app` 을 이미 허용
-- [ ] YouTube API 키 웹사이트 제한에 `https://mochestra-united.vercel.app/*`, `http://localhost:5180/*` 추가 (사용자)
+- [x] YouTube API 키 웹사이트 제한에 통합 앱 주소 추가 — 2026-09-28 localhost:5180 / mochestra-united.vercel.app 둘 다 검색 확인
 - [x] 모닝팩 옮기기 — 2026-09-28 `src/tabs/morning/` (CSS는 `.morning-tab` 안으로 한정), 공통 헤더 `shell/TabHeader`. 대비 검사 88개 통과
 - [x] Vercel 환경 변수에 `VITE_KMA_SERVICE_KEY`, `VITE_UNSPLASH_ACCESS_KEY` 추가 (2026-09-28)
-- [ ] 유튜브 옮기기
+- [x] 유튜브 옮기기 — 2026-09-28 `src/tabs/video/` (iPad 비율 액자 → 일반 카드 `.video-card`, CSS는 `.video-tab` 안으로 한정). 검색·재생 확인, 대비 검사 50개 통과
+- [ ] 탭을 옮겨 다니면 각 탭 상태(유튜브 검색 결과·재생 중인 영상 등)가 초기화됨. 필요하면 탭 화면을 숨김 처리로 유지하는 방식 검토
+- [ ] `video/components/KeyDialog.jsx` 린트 경고(effect 안 setState) — 원본에서 가져온 것
 - [ ] 프리지아 옮기기
 - [ ] 런치박스 React로 옮기기
 - [ ] 글꼴 통일 (Pretendard / Noto Sans KR / 디자인 시스템 v1 글꼴 중 결정)
